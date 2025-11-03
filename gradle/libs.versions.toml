@@ -11,6 +11,7 @@ junit5 = "5.10.0"  # JUnit Jupiter
 mockito = "5.5.0"
 androidxTest = "1.6.0"
 espresso = "3.6.1"
+testng = "6.9.6"
 
 [libraries]
 # Main app dependencies
@@ -37,6 +38,7 @@ androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espres
 
 # Legacy JUnit 4 (for compatibility if needed)
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+testng = { group = "org.testng", name = "testng", version.ref = "testng" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

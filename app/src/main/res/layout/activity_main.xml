@@ -3,24 +3,27 @@
     android:padding="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4A61D3">
+    android:background="@drawable/bg3">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You can see here all student info"
+        android:text="Welcome to you in my app !"
         android:textColor="@color/white"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="100dp"
         android:textSize="20dp"/>
     <Button
         android:id="@+id/btnAdd"
         android:text="Add Student"
         android:layout_width="300dp"
+        android:paddingVertical="15dp"
+        android:textColor="@color/black"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/black" />
+        android:backgroundTint="@color/white" />
 
 
     <Button
@@ -30,7 +33,9 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/green"  />
+        android:textColor="@color/black"
+        android:paddingVertical="15dp"
+        android:backgroundTint="@color/white"  />
 
     <Button
         android:id="@+id/btnUpdate"
@@ -39,7 +44,9 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/green"  />
+        android:textColor="@color/black"
+        android:paddingVertical="15dp"
+        android:backgroundTint="@color/white"  />
 
     <Button
         android:id="@+id/btnStdRecords"
@@ -48,7 +55,9 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/green" />
+        android:textColor="@color/black"
+        android:paddingVertical="15dp"
+        android:backgroundTint="@color/white" />
 
 
 </LinearLayout>
