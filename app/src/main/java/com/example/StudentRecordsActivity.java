@@ -1,4 +1,4 @@
-package com.example.studentinfo;
+package com.example;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studentinfo.StudentService;
 
 import java.util.List;
 

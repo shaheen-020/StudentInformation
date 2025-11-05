@@ -1,10 +1,12 @@
-package com.example.studentinfo;
+package com.example;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.StudentService;
 
 public class AddStudentActivity extends AppCompatActivity {
     EditText etRoll, etName;
@@ -20,8 +22,10 @@ public class AddStudentActivity extends AppCompatActivity {
         etRoll = findViewById(R.id.etAddRoll);
         etName = findViewById(R.id.etAddName);
         btnSave = findViewById(R.id.btnSaveStudent);
-        db = new DbHelper(this);
-        sv = new StudentService(db);
+       // db = new DbHelper(this);
+        // singleTon Design Pattern
+        DbHelper dbHelper = DbHelperSingleton.getInstance(this);
+        sv = new StudentService(dbHelper);
 
         btnSave.setOnClickListener(v -> {
             String roll = etRoll.getText().toString().trim();

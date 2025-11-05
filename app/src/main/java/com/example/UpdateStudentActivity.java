@@ -1,4 +1,4 @@
-package com.example.studentinfo;
+package com.example;
 
 import android.os.Bundle;
 import android.widget.Button;

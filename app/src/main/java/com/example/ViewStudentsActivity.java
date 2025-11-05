@@ -1,4 +1,4 @@
-package com.example.studentinfo;
+package com.example;
 
 import android.database.Cursor;
 import android.os.Bundle;

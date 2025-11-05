@@ -1,4 +1,4 @@
-package com.example.studentinfo;
+package com.example;
 import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;

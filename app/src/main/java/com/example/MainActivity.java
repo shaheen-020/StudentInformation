@@ -1,10 +1,13 @@
-package com.example.studentinfo;
+package com.example;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studentinfo.UpdateStudentActivity;
+import com.example.studentinfo.ViewStudentsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
