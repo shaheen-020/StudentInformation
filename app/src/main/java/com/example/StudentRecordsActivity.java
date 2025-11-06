@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.studentinfo.StudentService;
+import com.example.StudentService;
 
 import java.util.List;
 
