@@ -1,5 +1,5 @@
 package com.example;
-import android.database.Cursor;
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.Button;
@@ -8,11 +8,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.StudentService;
-
 import java.util.List;
 
 public class StudentRecordsActivity extends AppCompatActivity {
@@ -22,17 +18,21 @@ public class StudentRecordsActivity extends AppCompatActivity {
     TableLayout tableLayout;
     DbHelper db;
     StudentService studentService;
+    SearchStrategy searchStrategy; // <-- new field for strategy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_records); // Make sure this XML file exists
+        setContentView(R.layout.activity_student_records);
 
         etQuery = findViewById(R.id.etSearch);
         btnSearch = findViewById(R.id.btnSearch);
         tableLayout = findViewById(R.id.tableLayoutRecords);
         db = new DbHelper(this);
         studentService = new StudentService(db);
+
+        // ✅ Apply Strategy Pattern
+        searchStrategy = new IdSearchStrategy(studentService);
 
         btnSearch.setOnClickListener(v -> {
             String q = etQuery.getText().toString().trim();
@@ -41,17 +41,19 @@ public class StudentRecordsActivity extends AppCompatActivity {
                 return;
             }
 
-            tableLayout.removeAllViews(); // Clear previous results
+            tableLayout.removeAllViews();
             addHeader();
 
-            List<String[]> students = studentService.searchStudents(q);
+            // ✅ use strategy instead of calling service directly
+            List<String[]> students = searchStrategy.search(q);
+
             if (students.isEmpty()) {
                 Toast.makeText(this, "No results found", Toast.LENGTH_SHORT).show();
             } else {
                 for (String[] student : students) {
                     TableRow row = new TableRow(this);
-                    row.addView(makeText(student[0])); // ID
-                    row.addView(makeText(student[1])); // Name
+                    row.addView(makeText(student[0]));
+                    row.addView(makeText(student[1]));
                     tableLayout.addView(row);
                 }
             }
