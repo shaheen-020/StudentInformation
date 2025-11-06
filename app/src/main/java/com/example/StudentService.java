@@ -16,7 +16,7 @@ public class StudentService {
     }
     public List<String[]> searchStudents(String query) {
         List<String[]> students = new ArrayList<>();
-       students = db.searchStudents(query);
+        students = db.searchStudents(query);
 
         return students;
     }
