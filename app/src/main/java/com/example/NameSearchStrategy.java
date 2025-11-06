@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.List;
 
+
+//strategy pattern
 public class NameSearchStrategy implements SearchStrategy {
     private final StudentService studentService;
 
