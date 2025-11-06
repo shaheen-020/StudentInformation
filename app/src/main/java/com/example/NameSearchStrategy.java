@@ -10,7 +10,6 @@ public class NameSearchStrategy implements SearchStrategy {
     public NameSearchStrategy(StudentService studentService) {
         this.studentService = studentService;
     }
-
     @Override
     public List<String[]> search(String query) {
         List<String[]> allStudents = studentService.searchStudents(query);
