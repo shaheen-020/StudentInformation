@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UpdateStudentActivity extends AppCompatActivity {
     EditText etRoll, etNewName;
     Button btnUpdate;
-    DbHelper db;
+    private UpdateStudentFacade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +19,33 @@ public class UpdateStudentActivity extends AppCompatActivity {
         etRoll = findViewById(R.id.etUpdRoll);
         etNewName = findViewById(R.id.etUpdName);
         btnUpdate = findViewById(R.id.btnUpdateStudent);
-        db = new DbHelper(this);
+
+        facade = new UpdateStudentFacade(this);
 
         btnUpdate.setOnClickListener(v -> {
             String roll = etRoll.getText().toString().trim();
             String newName = etNewName.getText().toString().trim();
-            if (roll.isEmpty() || newName.isEmpty()) {
-                Toast.makeText(this, "Enter ID and new name", Toast.LENGTH_SHORT).show();
-            } else {
-                boolean ok = db.updateStudent(roll, newName);
-                Toast.makeText(this, ok ? "Updated" : "Student not found", Toast.LENGTH_SHORT).show();
-            }
+            facade.updateStudent(roll, newName);
         });
+    }
+
+    // Facade Inner Class
+    private class UpdateStudentFacade {
+        private DbHelper dbHelper;
+        private android.content.Context context;
+
+        public UpdateStudentFacade(android.content.Context context) {
+            this.context = context;
+            this.dbHelper = new DbHelper(context);
+        }
+
+        public void updateStudent(String roll, String newName) {
+            if (roll.isEmpty() || newName.isEmpty()) {
+                Toast.makeText(context, "Enter ID and new name", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean ok = dbHelper.updateStudent(roll, newName);
+                Toast.makeText(context, ok ? "Updated" : "Student not found", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

@@ -22,7 +22,11 @@ public class StudentRecordsActivity extends AppCompatActivity {
     TableLayout tableLayout;
     DbHelper db;
     StudentService studentService;
+<<<<<<< HEAD
     StudentResultAdapter adapter;
+=======
+    SearchStrategy searchStrategy; // new field for strategy
+>>>>>>> 941bbb08e31497ded0793ebf2d82edf038fb46e2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,8 +6,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.UpdateStudentActivity;
-import com.example.ViewStudentsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
