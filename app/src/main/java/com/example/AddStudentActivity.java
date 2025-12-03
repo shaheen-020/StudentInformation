@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.StudentService;
 
 public class AddStudentActivity extends AppCompatActivity {
     EditText etRoll, etName;
