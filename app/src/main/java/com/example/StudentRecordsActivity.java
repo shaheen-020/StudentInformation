@@ -18,7 +18,7 @@ public class StudentRecordsActivity extends AppCompatActivity {
     TableLayout tableLayout;
     DbHelper db;
     StudentService studentService;
-    SearchStrategy searchStrategy; // <-- new field for strategy
+    SearchStrategy searchStrategy; // new field for strategy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
