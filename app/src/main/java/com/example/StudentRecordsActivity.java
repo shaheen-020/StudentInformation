@@ -8,7 +8,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studentinfo.R;
+
 import java.util.List;
 
 public class StudentRecordsActivity extends AppCompatActivity {
@@ -18,7 +22,7 @@ public class StudentRecordsActivity extends AppCompatActivity {
     TableLayout tableLayout;
     DbHelper db;
     StudentService studentService;
-    SearchStrategy searchStrategy; // <-- new field for strategy
+    StudentResultAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +34,7 @@ public class StudentRecordsActivity extends AppCompatActivity {
         tableLayout = findViewById(R.id.tableLayoutRecords);
         db = new DbHelper(this);
         studentService = new StudentService(db);
-
-        // ✅ Apply Strategy Pattern
-        searchStrategy = new IdSearchStrategy(studentService);
+        adapter = new TableLayoutAdapter(this, tableLayout);
 
         btnSearch.setOnClickListener(v -> {
             String q = etQuery.getText().toString().trim();
@@ -41,42 +43,61 @@ public class StudentRecordsActivity extends AppCompatActivity {
                 return;
             }
 
-            tableLayout.removeAllViews();
-            addHeader();
-
-            // ✅ use strategy instead of calling service directly
-            List<String[]> students = searchStrategy.search(q);
-
+            List<String[]> students = studentService.searchStudents(q);
             if (students.isEmpty()) {
                 Toast.makeText(this, "No results found", Toast.LENGTH_SHORT).show();
             } else {
-                for (String[] student : students) {
-                    TableRow row = new TableRow(this);
-                    row.addView(makeText(student[0]));
-                    row.addView(makeText(student[1]));
-                    tableLayout.addView(row);
-                }
+                adapter.displayStudents(students);
             }
         });
     }
 
-    void addHeader() {
-        TableRow header = new TableRow(this);
-        header.addView(makeText("ID", true));
-        header.addView(makeText("Name", true));
-        tableLayout.addView(header);
+    interface StudentResultAdapter {
+        void displayStudents(List<String[]> students);
     }
 
-    TextView makeText(String text) {
-        return makeText(text, false);
-    }
+    class TableLayoutAdapter implements StudentResultAdapter {
+        private android.content.Context context;
+        private TableLayout tableLayout;
 
-    TextView makeText(String text, boolean isHeader) {
-        TextView tv = new TextView(this);
-        tv.setText(text);
-        tv.setGravity(Gravity.CENTER);
-        tv.setPadding(16, 10, 16, 10);
-        if (isHeader) tv.setTextSize(18);
-        return tv;
+        public TableLayoutAdapter(android.content.Context context, TableLayout tableLayout) {
+            this.context = context;
+            this.tableLayout = tableLayout;
+        }
+
+        @Override
+        public void displayStudents(List<String[]> students) {
+            tableLayout.removeAllViews();
+            addHeader();
+
+            for (String[] student : students) {
+                TableRow row = new TableRow(context);
+                row.addView(makeText(student[0]));
+                row.addView(makeText(student[1]));
+                tableLayout.addView(row);
+            }
+        }
+
+        private void addHeader() {
+            TableRow header = new TableRow(context);
+            header.addView(makeText("ID", true));
+            header.addView(makeText("Name", true));
+            tableLayout.addView(header);
+        }
+
+        private TextView makeText(String text) {
+            return makeText(text, false);
+        }
+
+        private TextView makeText(String text, boolean isHeader) {
+            TextView tv = new TextView(context);
+            tv.setText(text);
+            tv.setGravity(Gravity.CENTER);
+            tv.setPadding(16, 10, 16, 10);
+            if (isHeader)
+                tv.setTextSize(18);
+            return tv;
+
+        }
     }
 }
