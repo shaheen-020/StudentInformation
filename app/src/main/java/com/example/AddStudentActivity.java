@@ -1,5 +1,4 @@
 package com.example;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +11,6 @@ public class AddStudentActivity extends AppCompatActivity {
     Button btnSave;
     DbHelper db;
     StudentService sv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.studentinfo.R;
 
 import java.util.List;
-
+import static android.os.Build.VERSION_CODES.R;
 public class StudentRecordsActivity extends AppCompatActivity {
 
     EditText etQuery;
