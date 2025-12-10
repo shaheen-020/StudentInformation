@@ -1,4 +1,4 @@
-package com.example;
+package com.example.studentinfo;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studentinfo.R;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

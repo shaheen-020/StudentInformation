@@ -1,10 +1,12 @@
-package com.example;
+package com.example.studentinfo;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studentinfo.R;
 
 public class UpdateStudentActivity extends AppCompatActivity {
     EditText etRoll, etNewName;

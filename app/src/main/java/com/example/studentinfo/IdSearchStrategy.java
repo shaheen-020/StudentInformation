@@ -1,15 +1,16 @@
-package com.example;
+package com.example.studentinfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NameSearchStrategy implements SearchStrategy {
+public class IdSearchStrategy implements SearchStrategy {
 
     private final StudentService studentService;
 
-    public NameSearchStrategy(StudentService studentService) {
+    public IdSearchStrategy(StudentService studentService) {
         this.studentService = studentService;
     }
+
     @Override
     public List<String[]> search(String query) {
         List<String[]> allStudents = studentService.searchStudents(query);

@@ -1,6 +1,5 @@
-package com.example;
+package com.example.studentinfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentService {

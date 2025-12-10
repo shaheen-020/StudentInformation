@@ -1,5 +1,4 @@
-
-package com.example;
+package com.example.studentinfo;
 
 import java.util.List;
 
