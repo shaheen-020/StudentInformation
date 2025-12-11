@@ -1,16 +1,17 @@
 package com.example.studentinfo;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class AddStudentActivity extends AppCompatActivity {
     EditText etRoll, etName;
     Button btnSave;
     DbHelper db;
     StudentService sv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +20,11 @@ public class AddStudentActivity extends AppCompatActivity {
         etRoll = findViewById(R.id.etAddRoll);
         etName = findViewById(R.id.etAddName);
         btnSave = findViewById(R.id.btnSaveStudent);
-       // db = new DbHelper(this);
+        // db = new DbHelper(this);
         // singleTon Design Pattern
         DbHelper dbHelper = DbHelperSingleton.getInstance(this);
-        sv = new StudentService(dbHelper);
+        // Factory Design Pattern
+        sv = createStudentService(dbHelper);
 
         btnSave.setOnClickListener(v -> {
             String roll = etRoll.getText().toString().trim();
@@ -40,5 +42,10 @@ public class AddStudentActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Factory Method
+    private StudentService createStudentService(DbHelper dbHelper) {
+        return new StudentService(dbHelper);
     }
 }
